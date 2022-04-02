@@ -1,0 +1,228 @@
+#include "TXlib.h"
+const COLORREF PIG_SKIN  (RGB (242, 181, 181));
+const COLORREF WOLF_SKIN (RGB (193, 199, 184));
+void DrawBackGround   ();
+void DrawHouse        ();
+void DrawPig          (int x, int y, int size);
+void DrawSun          ();
+void DrawBaloons      ();
+void DrawEars         (int x, int y, int size);
+void DrawHeadArmsFeet (int x, int y, int size);
+void DrawBody         (int x, int y, int size);
+void DrawEyes         (int x, int y, int size);
+void DrawWolf         (int x, int y, int size);
+void DrawWolfBody     (int x, int y, int size);
+void DrawWolfArms     (int x, int y, int size);
+void DrawWolfHead     (int x, int y, int size);
+int main ()
+{
+
+
+txCreateWindow (800, 600);
+
+    DrawBackGround  ();
+
+    DrawHouse       ();
+
+    int x    = 200;
+    int y    = 300;
+    int size = 1;
+    int t=0;
+
+    while (t<1000)
+    {
+    txClear();
+
+    DrawBackGround  ();
+
+    DrawHouse       ();
+
+    DrawSun         ();
+
+
+
+    DrawPig         (x-t, y, size);
+
+    DrawWolf        (x+t, y, size);
+
+
+
+    t++;
+    txSleep(50);
+
+    }
+
+return 0;
+}
+void DrawBackGround ()
+{
+    txSetColor     (RGB (0, 191, 255));
+    txSetFillColor (RGB (0, 191, 255));
+    txRectangle    (0, 0, 800, 600);
+
+    txSetColor     (RGB (0, 128, 0));
+    txSetFillColor (RGB (0, 128, 0));
+    txRectangle    (0, 600, 800, 200);
+}
+
+void DrawHouse ()
+{
+    int x = 550;
+    int y = 400;
+
+    txSetFillColor (RGB (255, 201, 14));
+    txRectangle    (x - 550 + 300, y - 400 + 500, x - 550 + 500, y - 400 + 350);
+
+    txSetColor     (RGB (208, 99, 47));
+    txSetFillColor (RGB (208, 99, 47));
+    txRectangle    (x - 550 + 325, y - 400 + 500, x - 550 + 375, y - 400 + 400);
+
+    txSetColor     (RGB(255, 255, 255));
+    txSetFillColor (RGB(0, 255, 255));
+    txRectangle    (x - 550 + 475, y - 400 + 450, x - 550 + 425, y - 400 + 400);
+
+    txLine         (x - 550 + 450, y - 400 + 450, x - 550 + 450, y - 400 + 400);
+    txLine         (x - 550 + 475, y - 400 + 425, x - 550 + 425, y - 400 + 425);
+
+    txSetColor     (RGB (255, 0, 0));
+    txSetFillColor (RGB (255, 0, 0));
+    POINT star[3]  {{x - 550 + 300, y - 400 + 350}, {x - 550 + 500, y - 400 + 350}, {x - 550 + 400, y - 400 + 300}};
+    txPolygon      (star, 3);
+}
+
+void DrawPig        (int x, int y, int size)
+{
+
+DrawHeadArmsFeet (x, y, size);
+DrawBody         (x, y, size);
+DrawEars         (x, y, size);
+DrawEyes         (x, y, size);
+
+
+
+}
+void DrawEars         (int x, int y, int size)
+{
+    txSetFillColor (PIG_SKIN);
+    txSetColor     (PIG_SKIN);
+    POINT ear [6]  {{x + size * (-200 + 395), y + size * (-300 + 300)}, {x + size * (-200 + 385), y + size * (-300 + 270)}, {x + size * (-200 + 375), y + size * (-300 + 275)}, {x + size * (-200 + 370), y + size * (-300 + 285)}, {x + size * (-200 + 380), y + size * (-300 + 280)}, {x + size * (-200 + 385), y + size * (-300 + 300)}};
+    POINT earr[6]  {{x + size * (-200 + 405), y + size * (-300 + 300)}, {x + size * (-200 + 415), y + size * (-300 + 270)}, {x + size * (-200 + 425), y + size * (-300 + 275)}, {x + size * (-200 + 430), y + size * (-300 + 285)}, {x + size * (-200 + 420), y + size * (-300 + 280)}, {x + size * (-200 + 405), y + size * (-300 + 300)}};
+    txPolygon      (ear , 6);
+    txPolygon      (earr, 6);
+}
+void DrawHeadArmsFeet (int x, int y, int size)
+{
+    txSetColor     (PIG_SKIN);
+    txSetFillColor (PIG_SKIN);
+    txCircle       (x + size * 200, y + size * (-300 + 300), size * 25);
+
+    txSetFillColor (RGB(216, 124, 124));
+    txSetColor     (RGB(216, 124, 124));
+    txCircle       (x + size * 200, y + size * (-300 + 305), size * 8);
+    txSetFillColor (RGB(200, 68 , 68 ));
+    txSetColor     (RGB(200, 68 , 68 ));
+    txCircle       (x + size * 197, y + size * (-300 + 304), size * 2  );
+    txCircle       (x + size * 203, y + size * (-300 + 304), size * 2  );
+
+    txSetFillColor (PIG_SKIN);
+    txSetColor     (RGB (242, 181, 181), 6);
+    txLine         (x + size * (-200 + 405), y + size * (-300 + 370), x + size * (-200 + 415), y + size * (-300 + 410));
+    txLine         (x + size * (-200 + 395), y + size * (-300 + 370), x + size * (-200 + 385), y + size * (-300 + 410));
+    txLine         (x + size * (-200 + 405), y + size * (-300 + 325), x + size * (-200 + 435), y + size * (-300 + 335));
+    txLine         (x + size * (-200 + 395), y + size * (-300 + 325), x + size * (-200 + 365), y + size * (-300 + 335));
+    //txEllipse      (x + size * (-200 + 405), y + size * (-300 + 370), x + size * (-200 + 415), y + size * (-300 + 410));
+    //txEllipse      (x + size * (-200 + 395), y + size * (-300 + 370), x + size * (-200 + 385), y + size * (-300 + 410));
+    //txEllipse      (x + size * (-200 + 405), y + size * (-300 + 325), x + size * (-200 + 435), y + size * (-300 + 335));
+    //txEllipse      (x + size * (-200 + 395), y + size * (-300 + 325), x + size * (-200 + 365), y + size * (-300 + 335));
+
+ }
+void DrawBody      (int x, int y, int size)
+{
+    txSetFillColor (RGB (91, 147, 249));
+    txSetColor     (RGB (91, 147, 249));
+    txCircle       (x + size * 200, y + size * (-300 + 355), size * 30);
+
+
+}
+void DrawEyes      (int x, int y, int size)
+{
+    txSetColor     (RGB (255, 255, 255));
+    txSetFillColor (RGB (255, 255, 255));
+    txCircle       (x + size * 192, y + size * (-300 + 295), size * 5);
+    txCircle       (x + size * 208, y + size * (-300 + 295), size * 5);
+    txSetFillColor (RGB (0, 0, 0));
+    txCircle       (x + size * 208, y + size * (-300 + 295), size * 4);
+    txCircle       (x + size * 192, y + size * (-300 + 295), size * 4);
+
+    txSetColor     (RGB (0, 0, 0));
+
+
+}
+void DrawSun       ()
+{
+    txSetFillColor (RGB (255, 208, 23));
+    txSetColor     (RGB (255, 208, 23));
+    txCircle       (60, 70, 50);
+
+    txLine         (120, 70 , 160, 70 );
+    txLine         (60 , 130, 60 , 170);
+    txLine         (105, 115, 135, 145);
+    txLine         (15 , 115,  0 , 145);
+    txLine         (105, 25 , 135,  0 );
+    txLine         (60 , 10 , 60 ,  0 );
+    txLine         (15 , 25 ,  0 ,  0 );
+}
+void DrawWolf      (int x, int y, int size)
+{
+ DrawWolfBody (x, y, size);
+ DrawWolfArms (x, y, size);
+ DrawWolfHead (x, y, size);
+}
+
+void DrawWolfBody (int x, int y, int size)
+{
+    txSetColor     (WOLF_SKIN);
+    txSetFillColor (WOLF_SKIN);
+
+    txCircle       (x + size * (-200 + 200), y + size * (-300 + 400), size * 50);
+    txCircle       (x + size * (-200 + 200), y + size * (-300 + 310), size * 40);
+
+    POINT wolfear  [3] {{x + size * (-200 + 190), y + size * (-300 + 280)}, {x + size * (-200 + 175), y + size * (-300 + 250)}, {x + size * (-200 + 170), y + size * (-300 + 285)}};
+    POINT wolfear2 [3] {{x + size * (-200 + 210), y + size * (-300 + 280)}, {x + size * (-200 + 225), y + size * (-300 + 250)}, {x + size * (-200 + 230), y + size * (-300 + 285)}};
+    txPolygon      (wolfear,  3);
+    txPolygon      (wolfear2, 3);
+
+}
+
+void DrawWolfArms (int x, int y, int size)
+{
+    txSetColor     (RGB (193, 199, 184), 6);
+    txSetFillColor (WOLF_SKIN);
+    txLine         (x + size * (-200 + 130), y + size * (-300 + 350), x + size * (-200 + 200), y + size * (-300 + 370));
+    txLine         (x + size * (-200 + 195), y + size * (-300 + 370), x + size * (-200 + 265), y + size * (-300 + 350));
+    txLine         (x + size * (-200 + 205), y + size * (-300 + 425), x + size * (-200 + 225), y + size * (-300 + 485));
+    txLine         (x + size * (-200 + 175), y + size * (-300 + 485), x + size * (-200 + 195), y + size * (-300 + 425));
+    //txEllipse      (x + size * (-200 + 130), y + size * (-300 + 350), x + size * (-200 + 200), y + size * (-300 + 370));
+    //txEllipse      (x + size * (-200 + 195), y + size * (-300 + 350), x + size * (-200 + 265), y + size * (-300 + 370));
+    //txEllipse      (x + size * (-200 + 205), y + size * (-300 + 425), x + size * (-200 + 225), y + size * (-300 + 485));
+    //txEllipse      (x + size * (-200 + 175), y + size * (-300 + 425), x + size * (-200 + 195), y + size * (-300 + 485));
+}
+void DrawWolfHead (int x, int y, int size)
+{
+    txSetFillColor (RGB (159, 159, 159));
+    txEllipse      (x + size * (-200 + 200), y + size * (-300 + 330), x + size * (-200 + 255), y + size * (-300 + 295));
+
+    txSetFillColor (RGB (0  , 0  , 0  ));
+    txSetColor     (RGB (0  , 0  , 0  ));
+    txCircle       (x + size * (-200 + 250), y + size * (-300 + 305), size * 5);
+
+    txSetFillColor (RGB (255, 255, 255));
+    txSetColor     (RGB (255, 255, 255));
+    txCircle       (x + size * (-200 + 200), y + size * (-300 + 300), size * 8);
+    txCircle       (x + size * (-200 + 220), y + size * (-300 + 295), size * 8);
+    txSetFillColor (RGB (0  , 0  , 0  ));
+    txSetColor     (RGB (0  , 0  , 0  ));
+    txCircle       (x + size * (-200 + 205), y + size * (-300 + 300), size * 3);
+    txCircle       (x + size * (-200 + 225), y + size * (-300 + 295), size * 3);
+
+}
